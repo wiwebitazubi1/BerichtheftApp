@@ -1,0 +1,73 @@
+// Prisma schema for the Azubi‑Berichtsheft application.
+//
+// This schema defines the database tables used to store users, reports,
+// comments and their relationships. It uses PostgreSQL as the database
+// provider. See the Prisma documentation for more details:
+// https://www.prisma.io/docs/
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// The roles supported by the application.  These values are mirrored in the
+// application’s RBAC checks to enforce role‑specific behaviour. See the user
+// stories for the meanings of each role.
+enum Role {
+  AZUBI
+  AUSBILDER
+  ADMIN
+}
+
+// Types of reports: either a daily log (TAG) or a weekly summary (WOCHE).
+enum ReportType {
+  TAG
+  WOCHE
+}
+
+// Status of a report as it progresses through the review cycle.
+enum ReportStatus {
+  ENTWURF         // draft, editable by the trainee
+  EINGEREICHT     // submitted for review
+  AENDERUNGSBEDARF // changes requested by instructor
+  GEPRUEFT        // approved
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  role         Role
+  name         String?
+  reports      Report[]  @relation("TraineeReports")
+  comments     Comment[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Report {
+  id        Int          @id @default(autoincrement())
+  traineeId Int
+  trainee   User         @relation("TraineeReports", fields: [traineeId], references: [id])
+  date      DateTime
+  type      ReportType
+  content   String
+  status    ReportStatus @default(ENTWURF)
+  comments  Comment[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  reportId  Int
+  report    Report    @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  authorId  Int
+  author    User      @relation(fields: [authorId], references: [id])
+  text      String
+  createdAt DateTime  @default(now())
+}

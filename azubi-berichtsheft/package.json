@@ -1,0 +1,38 @@
+{
+  "name": "azubi-berichtsheft",
+  "version": "1.0.0",
+  "description": "A full‑stack web application for managing apprenticeship training reports.",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prisma": "prisma"
+  },
+  "dependencies": {
+    "next": "16.0.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "@prisma/client": "6.18.0",
+    "prisma": "6.18.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
+    "react-big-calendar": "^1.10.3",
+    "date-fns": "^3.0.0",
+    "clsx": "^2.0.0",
+    "@headlessui/react": "^1.8.0",
+    "lucide-react": "^0.36.0",
+    "tailwindcss-animate": "^1.0.0",
+    "@radix-ui/react-dialog": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "20.4.0",
+    "@types/react": "19.0.5",
+    "@types/react-dom": "19.0.5",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.30",
+    "autoprefixer": "^10.4.16",
+    "prettier": "^3.0.0"
+  }
+}

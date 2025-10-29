@@ -1,7 +1,7 @@
 {
   "name": "azubi-berichtsheft",
   "version": "1.0.0",
-  "description": "A full‑stack web application for managing apprenticeship training reports.",
+  "description": "A full-stack web application for managing apprenticeship training reports.",
   "private": true,
   "scripts": {
     "dev": "next dev",

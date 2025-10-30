@@ -21,7 +21,7 @@
     "react-big-calendar": "^1.10.3",
     "date-fns": "^3.0.0",
     "clsx": "^2.0.0",
-    "@headlessui/react": "^1.8.0",
+    "@headlessui/react": "^1.7.18",
     "lucide-react": "^0.36.0",
     "tailwindcss-animate": "^1.0.0",
     "@radix-ui/react-dialog": "^1.0.0"
